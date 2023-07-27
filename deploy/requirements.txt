@@ -8,3 +8,4 @@ flask
 tensorflow
 moviepy
 redis
+oss2
