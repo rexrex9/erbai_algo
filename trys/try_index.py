@@ -25,7 +25,7 @@ def try_skip_hello():
     url = host +':9910/hello'
     r = requests.get(url)
     print(r)
-    print(r.json())
+    print(r.text)
 
 if __name__ == '__main__':
     try_skip_hello()
