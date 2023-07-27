@@ -1,0 +1,4 @@
+from rexrex9/repo1:base
+copy . .
+RUN python projects/skip_retouching/activate.py
+CMD python projects/skip_retouching/index.py

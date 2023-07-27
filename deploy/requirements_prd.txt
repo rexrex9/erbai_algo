@@ -1,0 +1,7 @@
+opencv-contrib-python
+opencv-python
+tqdm
+flask
+moviepy
+redis
+oss2

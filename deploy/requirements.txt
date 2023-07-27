@@ -1,0 +1,10 @@
+modelscope
+opencv-contrib-python
+opencv-python
+torch
+torchvision
+tqdm
+flask
+tensorflow
+moviepy
+redis

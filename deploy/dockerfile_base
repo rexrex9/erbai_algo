@@ -1,0 +1,5 @@
+from xuxumengmeng/modelscope
+ENV LANG=C.UTF-8
+COPY deploy /app/deploy
+WORKDIR /app
+RUN pip install -r deploy/requirements.txt
