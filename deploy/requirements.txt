@@ -9,3 +9,5 @@ tensorflow
 moviepy
 redis
 oss2
+scikit-learn
+scikit-image
