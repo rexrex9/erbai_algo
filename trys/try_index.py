@@ -5,7 +5,7 @@ import requests
 
 face_path = 'algo_medias/test_files/face1.jpg'
 video_path = 'algo_medias/test_files/test_video_13s.mp4'
-host = '127.0.0.1'
+host = 'http://10.0.126.217'
 
 def try_skip_image():
     url = host +':9910/do'

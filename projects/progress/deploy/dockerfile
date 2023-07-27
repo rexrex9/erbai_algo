@@ -1,0 +1,4 @@
+from python:3.9
+copy . .
+RUN pip install -r projects/progress/deploy/requirements.txt
+CMD python projects/progress/index.py
