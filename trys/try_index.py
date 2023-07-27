@@ -10,14 +10,14 @@ host = 'http://172.17.0.2'
 def try_skip_image():
     url = host +':9910/do'
     d = {'oss_media_path':face_path,'out_format':'png','ifoss':True}
-    r = requests.post(url,data=d)
+    r = requests.post(url,json=d)
     print(r)
     print(r.json())
 
 def try_skip_video():
     url = host +':9910/do'
     d = {'oss_media_path':video_path,'out_format':'mp4','ifoss':True}
-    r = requests.post(url,data=d)
+    r = requests.post(url,json=d)
     print(r)
     print(r.json())
 
