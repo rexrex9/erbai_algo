@@ -1,5 +1,5 @@
 from rexrex9/repo1:base
 copy . .
-pip install scikit-learn scikit-image
+RUN pip install scikit-learn scikit-image
 RUN python projects/skip_retouching/activate.py
 CMD python projects/skip_retouching/index.py
