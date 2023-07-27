@@ -8,9 +8,10 @@ class Fix_Photo(BaseClass):
         super().__init__()
         self.model = pipeline(Tasks.image_portrait_enhancement, model='damo/cv_gpen_image-portrait-enhancement')
         self.scaling = 2
+        self.project_name = 'fix_photo'
 
 
 if __name__ == '__main__':
     fip = Fix_Photo()
-    #fip.process_image(fp.FILE_TEST.FACE1)
-    fip.process_video(fp.FILE_TEST.VIDEO_13S)
+    fip.process_image(fp.FILE_TEST.FACE1)
+    #fip.process_video(fp.FILE_TEST.VIDEO_13S)
