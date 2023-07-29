@@ -13,7 +13,7 @@ class Photo(BaseClass):
         self.scaling = 2
         self.project_name = 'fix_photo'
 
-    def _do_image(self,img,timg=None):
+    def do_image(self,img,timg=None):
         img = self.skin_model(img)[OutputKeys.OUTPUT_IMG]
         img = self.fix_model(img)[OutputKeys.OUTPUT_IMG]
         return img
@@ -41,5 +41,5 @@ class Major():
 
 if __name__ == '__main__':
     fip = Major()
-    fip.do('t1',fp.FILE_TEST.FACE1,'png')
-    #fip.do(fp.FILE_TEST.VIDEO_13S,'png_list')
+    #fip.do('t1',fp.FILE_TEST.FACE1,'png')
+    fip.do('t1',fp.FILE_TEST.VIDEO_13S,'png_list')
