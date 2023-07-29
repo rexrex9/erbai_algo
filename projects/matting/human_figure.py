@@ -16,7 +16,6 @@ class HumanFigure(BaseClass):
         self.project_name = 'matting'
 
     def process_image(self,img_path,bg_path=None,ifbg=True,format='png'):
-        print(bg_path)
         img = iu.read_image(img_path)
         result = self.do_image(img)
         if ifbg:
