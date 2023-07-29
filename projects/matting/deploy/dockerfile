@@ -1,0 +1,4 @@
+from rexrex9/repo1:base
+copy . .
+RUN python projects/matting/activate.py
+CMD python projects/matting/index.py
