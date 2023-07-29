@@ -1,4 +1,5 @@
 from rexrex9/repo1:base
 copy . .
+RUN pip install librosa soundfile
 RUN python projects/noise_suppression/activate.py
 CMD python projects/noise_suppression/index.py
