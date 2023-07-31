@@ -10,14 +10,14 @@ host = 'http://172.17.0.3'
 #host = 'http://116.62.176.131'
 def try_image():
     url = host +':8999/do'
-    d = {'oss_media_path':face_path,audio_path:audio_path,'out_format':'png','ifoss':True}
+    d = {'oss_media_path':face_path,'audio_path':audio_path,'out_format':'png','ifoss':True}
     r = requests.post(url,json=d)
     print(r)
     print(r.json())
 
 def try_video():
     url = host +':8999/do'
-    d = {'oss_media_path':video_path,audio_path:audio_path,'out_format':'mp4','ifoss':True}
+    d = {'oss_media_path':video_path,'audio_path':audio_path,'out_format':'mp4','ifoss':True}
     r = requests.post(url,json=d)
     print(r)
     print(r.json())
