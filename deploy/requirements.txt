@@ -5,7 +5,7 @@ torch
 torchvision
 tqdm
 flask
-tensorflow
+tensorflow-2.11.0
 moviepy
 redis
 oss2
