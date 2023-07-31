@@ -16,14 +16,14 @@ def try_image():
     print(r.json())
 
 def try_video():
-    url = host +':9910/do'
+    url = host +':8999/do'
     d = {'oss_media_path':video_path,audio_path:audio_path,'out_format':'mp4','ifoss':True}
     r = requests.post(url,json=d)
     print(r)
     print(r.json())
 
 def try_hello():
-    url = host +':9910/hello'
+    url = host +':8999/hello'
     r = requests.get(url)
     print(r)
     print(r.text)

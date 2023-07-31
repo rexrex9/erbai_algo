@@ -6,7 +6,7 @@ import requests
 face_path = 'algo_medias/test_files/face1.jpg'
 video_path = 'algo_medias/test_files/test_video_13s.mp4'
 host = 'http://172.17.0.2'
-host = 'http://116.62.176.131'
+#host = 'http://116.62.176.131'
 def try_skip_image():
     url = host +':9910/do'
     d = {'oss_media_path':face_path,'out_format':'png','ifoss':True}
