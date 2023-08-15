@@ -12,7 +12,7 @@ class FaceFustion(BaseClass):
         self.model=pipeline(Tasks.image_face_fusion,model='damo/cv_unet-image-face-fusion_damo')
         self.project_name = 'face_fusion'
 
-    def _do_image(self,img,timg=None):
+    def do_image(self,img,timg=None):
         return self.model(dict(template=timg, user=img))[OutputKeys.OUTPUT_IMG]
 
 class Major():
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     fip = FaceFustion()
     #a = fip.process_image(fp.FILE_TEST.FACE1,fp.FILE_TEST.FACE2)
     #print(a)
-    a = fip.process_video(fp.FILE_TEST.VIDEO_13S,fp.FILE_TEST.FACE1)
+    a = fip.process_video('a',fp.FILE_TEST.VIDEO_13S,fp.FILE_TEST.FACE1)
     print(a)
     # image_face_fusion = pipeline(Tasks.image_face_fusion,model='damo/cv_unet-image-face-fusion_damo')
     # template_path = 'https://modelscope.oss-cn-beijing.aliyuncs.com/test/images/facefusion_template.jpg'

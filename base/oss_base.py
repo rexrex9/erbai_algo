@@ -56,6 +56,8 @@ def upload(project_name, out_format,file_path):
         OC.upload_dir(file_path, oss_path)
         shutil.rmtree(file_path)
     else:
+        print(file_path)
+        print(oss_path)
         OC.upload(file_path, oss_path)
         os.remove(file_path)
     return oss_path

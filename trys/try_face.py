@@ -2,32 +2,23 @@
 import os,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 import requests
-'''
-1-E234
-"oss_media_path":"person_test/person1.jpg""out_format":"jpeg","ifoss":"True"
 
-'''
+
 face_path = 'algo_medias/test_files/face1.jpg'
 video_path = 'algo_medias/test_files/test_video_13s.mp4'
 host = 'http://172.17.0.2'
 #host = 'http://116.62.176.131'
 host = 'http://192.168.1.3'
 def try_skip_image():
-    url = host +':9910/do'
-    d = {'oss_media_path':face_path,'out_format':'png','ifoss':True,'type':'skin'}
+    url = host +':9911/do'
+    d = {'oss_media_path':video_path,'face_path':face_path,'out_format':'mp4','ifoss':True}
     r = requests.post(url,json=d)
     print(r)
     print(r.json())
 
-def try_skip_video():
-    url = host +':9910/do'
-    d = {'oss_media_path':video_path,'out_format':'mp4','ifoss':True,'type':'hd'}
-    r = requests.post(url,json=d)
-    print(r)
-    print(r.json())
 
 def try_skip_hello():
-    url = host +':9910/hello'
+    url = host +':9911/hello'
     r = requests.get(url)
     print(r)
     print(r.text)

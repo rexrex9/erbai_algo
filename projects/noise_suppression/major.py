@@ -4,6 +4,7 @@ from data import filepath as fp
 from os.path import join as osp
 from uuid import uuid4
 from base import oss_base,redis_base
+import os
 class NoiseReduce():
 
     def __init__(self):
@@ -15,6 +16,8 @@ class NoiseReduce():
 
     def do(self, trace_id,audio_path,format='wav',ifoss=False):
         project_path = osp(fp.RESULTS.AUDIO_DIR, self.project_name)
+        if not os.path.exists(project_path):
+            os.makedirs(project_path)
         output_path = osp(project_path, str(uuid4()) + '.'+format)
         self.ans(audio_path,output_path=output_path)
         if ifoss:

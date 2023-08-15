@@ -16,10 +16,10 @@ app = Flask(__name__)
 M = Major()
 
 
-def _do(trace_id,media_path,out_format,ifoss):
+def _do(trace_id,media_path,out_format,ifoss,type):
     #异步存储数据库
     try:
-        result_path = M.do(trace_id,media_path,out_format,ifoss)
+        result_path = M.do(trace_id,media_path,out_format,ifoss,type)
         logger.info(result_path)
     except Exception as e:
         err = traceback.format_exc()
@@ -37,8 +37,12 @@ def do():
         temp_path = oss_base.download(oss_path)
         out_format = sf.getArgsMore('out_format')
         ifoss = sf.getArgsMore('ifoss')
+        type = sf.getArgsMore('type')
+        if type not in ['skin', 'hd', 'both']: raise Exception(
+            'type must be skin or hd or both')
+
         trace_id = M.rq.init_progress(M.project_name)
-        executor.submit(_do, trace_id,temp_path,out_format,ifoss)
+        executor.submit(_do, trace_id,temp_path,out_format,ifoss,type)
         r['ok'] = 1
         r['trace_id'] = trace_id
 

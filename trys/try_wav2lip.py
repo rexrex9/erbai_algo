@@ -6,8 +6,8 @@ import requests
 face_path = 'algo_medias/test_files/face1.jpg'
 video_path = 'algo_medias/test_files/test_video_13s.mp4'
 audio_path = 'algo_medias/test_files/wav2lip_audio.WAV'
-host = 'http://172.17.0.3'
-#host = 'http://116.62.176.131'
+#host = 'http://172.17.0.3'
+host = 'http://120.26.104.180'
 def try_image():
     url = host +':8999/do'
     d = {'oss_media_path':face_path,'audio_path':audio_path,'out_format':'png','ifoss':True}
@@ -29,6 +29,6 @@ def try_hello():
     print(r.text)
 
 if __name__ == '__main__':
-    try_hello()
+    #try_hello()
     #try_video()
     try_video()

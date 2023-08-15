@@ -2,7 +2,7 @@ from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 from data import filepath as fp
 from base.media_base import BaseClass
-class Fix_Photo(BaseClass):
+class Skin(BaseClass):
 
     def __init__(self):
         super().__init__()
