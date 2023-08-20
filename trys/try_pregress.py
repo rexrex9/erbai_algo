@@ -12,16 +12,17 @@ audio_path = 'algo_medias/test_files/wav2lip_audio.WAV'
 host = 'http://172.17.0.2'
 host = 'http://121.43.41.188'
 #host = 'http://192.168.1.3'
-
+openorclose = True
+project_name = 'matting'
 def try_png_video():
-    url = host +':9909/do'
-    d = {'oss_media_path':png_path,'out_format':'mp4','ifoss':True,'type':'png_list','audio_path':audio_path}
+    url = host +':9913/docker_switch'
+    d = {'openorclose':openorclose,'project_name':project_name}
     r = requests.post(url,json=d)
     print(r)
     print(r.json())
 
 def try_skip_hello():
-    url = host +':9909/hello'
+    url = host +':9913/hello'
     r = requests.get(url)
     print(r)
     print(r.text)
