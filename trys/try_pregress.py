@@ -12,7 +12,7 @@ audio_path = 'algo_medias/test_files/wav2lip_audio.WAV'
 host = 'http://172.17.0.2'
 host = 'http://121.43.41.188'
 #host = 'http://192.168.1.3'
-openorclose = True
+openorclose = False
 project_name = 'matting'
 def try_png_video():
     url = host +':9913/docker_switch'
