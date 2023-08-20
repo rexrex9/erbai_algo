@@ -19,7 +19,7 @@ def docker_swith(task_name,openorclose):
     if openorclose:
         r = docker_base.docker_call(DOCKER_RUN_DICT[task_name])
         if r!=0:
-            docker_base.docker_run(task_name)
+            docker_base.docker_start(task_name)
     else:
         docker_base.docker_stop(task_name)
 
