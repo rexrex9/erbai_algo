@@ -52,12 +52,84 @@ class HumanVideo(BaseClass):
         result = result_status[OutputKeys.MASKS]
         os.remove(temp_video_path)
         return result
+
+    def process_png_list(self,trace_id,png_list_path,audio_path,bg_img=None,bg_video=None,fps=25):
+        temp_output_path = self.get_path_name('mp4')
+        total_count=0
+        dir_flag = False
+        for file_name in os.listdir(png_list_path):
+            if file_name.endswith('.png') and total_count==0:
+                file_path = osp(png_list_path,file_name)
+                img = cv2.imread(file_path)
+                #获取图片的宽高信息
+                height, width, layers = img.shape
+                dir_path = png_list_path
+            else:
+                dir_path = os.path.join(png_list_path,file_name)
+                dir_flag = True
+                break
+            total_count+=1
+
+        if dir_flag:
+            for file_name in os.listdir(dir_path):
+                if file_name.endswith('.png') and total_count == 0:
+                    file_path = osp(dir_path, file_name)
+                    img = cv2.imread(file_path)
+                    # 获取图片的宽高信息
+                    height, width, layers = img.shape
+                total_count+=1
+
+        videoWriter = cv2.VideoWriter(temp_output_path, cv2.VideoWriter_fourcc(*'XVID'), fps, (width, height))
+
+        if bg_video:
+            cap2 = cv2.VideoCapture(bg_video)
+            total_frames2 = int(cap2.get(cv2.CAP_PROP_FRAME_COUNT))
+
+            if total_frames2 < total_count:
+                raise Exception('bg_video frames must be more than video frames')
+
+
+        for i in range(total_count):
+            file_name = str(i)+'.png'
+            file_path = osp(dir_path,file_name)
+            if bg_video:
+                ret2, bg_frame = cap2.read()
+                temp_img_path_bg = osp(fp.TEMP.IMAGE_DIR, str(uuid4()) + '.png')
+                cv2.imwrite(temp_img_path_bg, bg_frame)
+                bg_img = temp_img_path_bg
+
+            img = self.BG.put_together(file_path, bg_img)
+            temp_img_path_in = osp(fp.TEMP.IMAGE_DIR, str(uuid4()) + '.png')
+            img.save(temp_img_path_in)
+
+            img = cv2.imread(temp_img_path_in)
+            videoWriter.write(img)
+
+            os.remove(temp_img_path_in)
+            if bg_video:
+                os.remove(temp_img_path_bg)
+
+            self.rq.add_progress(self.project_name, trace_id, round((i+1)/ total_count, 3) * 100)
+        videoWriter.release()
+        if bg_video:
+            cap2.release()
+        output_path = self.put_video_and_voice_together(temp_output_path, audio_path)
+        os.remove(temp_output_path)
+
+        print(output_path)
+        return output_path
+
     def process_video(self,trace_id,video_path,bg_img=None,bg_video=None,format='mp4',ifbg=True):
         if not ifbg:
             format = 'png_list'
-        output_path = self.get_path_name(format)
-        mask_results = self.get_mask(video_path)
 
+        if format != 'png_list':
+            temp_audio_path = self._seq_voice(video_path)
+            temp_output_path = self.get_path_name(format)
+        else:
+            output_path = self.get_path_name(format)
+
+        mask_results = self.get_mask(video_path)
         cap = cv2.VideoCapture(video_path)
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -72,7 +144,7 @@ class HumanVideo(BaseClass):
 
         if format != 'png_list':
             fps = int(cap.get(cv2.CAP_PROP_FPS))
-            videoWriter = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'XVID'), fps, (width, height))
+            videoWriter = cv2.VideoWriter(temp_output_path, cv2.VideoWriter_fourcc(*'XVID'), fps, (width, height))
 
         count = 0
         while True:
@@ -119,6 +191,10 @@ class HumanVideo(BaseClass):
         cap.release()
         if format != 'png_list':
             videoWriter.release()
+            output_path = self.put_video_and_voice_together(temp_output_path,temp_audio_path)
+            os.remove(temp_audio_path)
+            os.remove(temp_output_path)
+
         if bg_video:
             cap2.release()
 
@@ -128,7 +204,11 @@ class HumanVideo(BaseClass):
 if __name__ == '__main__':
     fip = HumanVideo()
     #p = 'https://modelscope.oss-cn-beijing.aliyuncs.com/test/videos/video_matting_test.mp4'
-    p = fp.FILE_TEST.VIDEO_13S
-    fip.process_video(p,bg_video=fp.FILE_TEST.MAT_BACKGROUND3_MP4,format='mp4')
+    #p = fp.FILE_TEST.VIDEO_13S
+    png_path = os.path.join(fp.RESULTS.PNG_LIST_DIR,'matting/079ba709-73c7-4063-b70a-70acb4353f28')
+    audio_path = fp.FILE_TEST.NOISE_WAV
+    #fip.process_video('a',p,bg_img=None,bg_video=None,format='png_list',ifbg=False)
+    bg_video=fp.FILE_TEST.MAT_BACKGROUND2_MP4
+    fip.process_png_list('a',png_path,audio_path,None,bg_video,25)
 
 

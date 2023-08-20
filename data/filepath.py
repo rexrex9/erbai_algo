@@ -36,6 +36,7 @@ class TEMP():
     AUDIO_DIR = ops(FILE_TEST_DIR, 'audio')
     VIDEO_DIR = ops(FILE_TEST_DIR, 'video')
     IMAGE_DIR = ops(FILE_TEST_DIR, 'image')
+    PNG_LIST_DIR = ops(FILE_TEST_DIR, 'png_list')
 
 class RESULTS():
     RESULTS_DIR = ops(ROOT, 'results')

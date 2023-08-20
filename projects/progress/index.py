@@ -3,7 +3,7 @@ import os,sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from flask import Flask,jsonify,request
 import traceback
-from projects.progress.major import run
+from projects.progress.major import run,docker_swith
 from utils.log_utils import logger
 from utils import servier_utils as sf
 
@@ -31,6 +31,27 @@ def do():
         r['error'] = err
 
     return jsonify(r)
+
+
+
+@app.route('/docker_switch',methods=['POST'])
+def docker_switch():
+    r = {}
+    try:
+        openorclose = sf.getArgsMore('openorclose')
+        project_name = sf.getArgsMore('project_name')
+        if project_name is None:raise Exception('project_name is None')
+        docker_swith(project_name,openorclose)
+        r['ok'] = 1
+    except Exception as e:
+        r['ok'] = 0
+        err = traceback.format_exc()
+        logger.error(err)
+        r['error'] = err
+
+    return jsonify(r)
+
+
 
 @app.route('/hello',methods=['GET'])
 def hello():

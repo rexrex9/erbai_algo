@@ -30,8 +30,10 @@ def genrate_temp_path(format):
         return fp.TEMP.IMAGE_DIR + '/' + str(uuid4()) + '.' + format
     elif format in ['mp4','avi','mov']:
         return fp.TEMP.VIDEO_DIR + '/' + str(uuid4()) + '.' +  format
-    else:
+    elif format in ['mp3','wav']:
         return fp.TEMP.AUDIO_DIR+'/' + str(uuid4()) + '.' + format
+    else:
+        return fp.TEMP.PNG_LIST_DIR + '/' + str(uuid4())+'.'+format
 
 def save_temp_file(project_name,format,file):
     #file是二进制文件
@@ -72,3 +74,25 @@ def download(oss_path):
 
 if __name__ == '__main__':
     pass
+
+
+'''
+0%;Traceback (most recent call last):
+  File "D:\workspace\pythonworkspace\newonline\digitalperson\erbai_algo\projects\matting\index.py", line 22, in _do
+    result_path = M.do(trace_id,media_path,type,ifbg,bg_medio_path,out_format,ifoss,temp_audio_path)
+  File "D:\workspace\pythonworkspace\newonline\digitalperson\erbai_algo\projects\matting\main.py", line 19, in do
+    result_path = self._run(media_path,type,trace_id,ifbg,bg_medio_path,out_format,audio_path=audio_path)
+  File "D:\workspace\pythonworkspace\newonline\digitalperson\erbai_algo\projects\matting\main.py", line 65, in _run
+    out_path = self.hum_vid.process_png_list(trace_id,tmp_png_dir,audio_path=audio_path,bg_img=bg_img_path,bg_video=bg_video_path)
+  File "D:\workspace\pythonworkspace\newonline\digitalperson\erbai_algo\projects\matting\human_video.py", line 116, in process_png_list
+    output_path = self.put_video_and_voice_together(temp_output_path, audio_path)
+  File "D:\workspace\pythonworkspace\newonline\digitalperson\erbai_algo\base\media_base.py", line 114, in put_video_and_voice_together
+    audio = mpe.AudioFileClip(temp_audio_path)
+  File "C:\Users\50425\home\work\program\env\envs\modelscopre\lib\site-packages\moviepy\audio\io\AudioFileClip.py", line 70, in __init__
+    self.reader = FFMPEG_AudioReader(filename, fps=fps, nbytes=nbytes,
+  File "C:\Users\50425\home\work\program\env\envs\modelscopre\lib\site-packages\moviepy\audio\io\readers.py", line 51, in __init__
+    infos = ffmpeg_parse_infos(filename)
+  File "C:\Users\50425\home\work\program\env\envs\modelscopre\lib\site-packages\moviepy\video\io\ffmpeg_reader.py", line 244, in ffmpeg_parse_infos
+    is_GIF = filename.endswith('.gif')
+AttributeError: 'NoneType' object has no attribute 'endswith'
+'''

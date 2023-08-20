@@ -1,4 +1,6 @@
 from rexrex9/repo1:base
 copy . .
+RUN apt-get install -y unzip
+RUN pip install zipfile
 RUN python projects/matting/activate.py
 CMD python projects/matting/index.py
