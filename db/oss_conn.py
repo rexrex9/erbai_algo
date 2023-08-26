@@ -12,8 +12,10 @@ class Paths():
 class OssConn(object):
 
     def __init__(self):
-        END_POINT = "https://oss-cn-shanghai.aliyuncs.com/"
-        BUCKET1 = "bxn-rby"
+        #END_POINT = "https://oss-cn-shanghai.aliyuncs.com/"
+        END_POINT = "https://oss-cn-hangzhou.aliyuncs.com"
+        #BUCKET1 = "bxn-rby"
+        BUCKET1 = "robot-rby"
         accessKeyId = "LTAI4G2eU6XFw22REmf583pA"
         accessKeySecret = "CjMN0XvoLjYNW82bQCGkY5URA7cIjK"
         auth = oss2.Auth(accessKeyId, accessKeySecret)
@@ -34,9 +36,9 @@ class OssConn(object):
 
 
 if __name__ == '__main__':
-    image_path = 'algo_medias/test_files/person1.jpg'
+    #image_path = 'algo_medias/test_files/person1.jpg'
     #测试一下
     oc = OssConn()
-    oc.bucket.get_bucket_info()
-    #oc.upload("run.txt", "algo_medias/test.txt")
-    oc.download(image_path, "a.jpg")
+    #print(oc.bucket.get_bucket_info())
+    oc.upload("test.txt", "algo_medias/test/test.txt")
+    oc.download("algo_medias/test/test.txt", "test1.txt")

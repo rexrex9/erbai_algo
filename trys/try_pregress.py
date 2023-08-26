@@ -10,10 +10,10 @@ video_path = 'algo_medias/test_files/test_video_13s.mp4'
 png_path = 'test/png_list_alpha.zip'
 audio_path = 'algo_medias/test_files/wav2lip_audio.WAV'
 host = 'http://172.17.0.2'
-host = 'http://121.43.41.188'
+host = 'http://121.43.152.109'
 #host = 'http://192.168.1.3'
-openorclose = True
-project_name = 'matting'
+openorclose = False
+project_name = 'noise_reduce'
 def try_png_video():
     url = host +':9913/docker_switch'
     d = {'openorclose':openorclose,'project_name':project_name}
