@@ -8,6 +8,7 @@ import requests
 face_path = 'algo_medias/test_files/face1.jpg'
 video_path = 'algo_medias/test_files/test_video_13s.mp4'
 png_path = 'test/png_list_alpha.zip'
+png_path = 'person_test/a.zip'
 audio_path = 'algo_medias/test_files/wav2lip_audio.WAV'
 host = 'http://172.17.0.2'
 host = 'http://47.99.63.176'

@@ -7,11 +7,12 @@ class Skin(BaseClass):
     def __init__(self):
         super().__init__()
         self.model = pipeline(Tasks.skin_retouching,model='damo/cv_unet_skin-retouching')
+        self.project_name = 'fix_photo'
 
 
 
 if __name__ == '__main__':
-    fip = Fix_Photo()
-    a = fip.process_image(fp.FILE_TEST.FACE1)
-    fip.process_video(fp.FILE_TEST.VIDEO_13S)
+    fip = Skin()
+    #a = fip.process_image(fp.FILE_TEST.FACE1)
+    a = fip.process_video('a',fp.FILE_TEST.VIDEO_13S)
     print(a)
