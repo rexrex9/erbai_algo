@@ -103,7 +103,8 @@ class BaseClass():
             else:
                 videoWriter.write(img)
             count += 1
-            self.rq.add_progress(self.project_name,trace_id,round(count/total_frames,3)*100)
+            print(round(count/total_frames,3)*100-1)
+            self.rq.add_progress(self.project_name,trace_id,round(count/total_frames,3)*100-1)
         cap.release()
         if format!='png_list':
             videoWriter.release()

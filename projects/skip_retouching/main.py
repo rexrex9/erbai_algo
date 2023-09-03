@@ -57,7 +57,7 @@ class Major():
 if __name__ == '__main__':
     fip = Major()
     #fip.do('t2',fp.FILE_TEST.FACE1,'png',True)
-    fip.do('t1',fp.FILE_TEST.VIDEO_13S,'png_list')
+    fip.do('t1',fp.FILE_TEST.VIDEO_13S,'mp4')
 
 
 

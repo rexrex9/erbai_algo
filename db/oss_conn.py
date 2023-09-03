@@ -13,7 +13,8 @@ class OssConn(object):
 
     def __init__(self):
         #END_POINT = "https://oss-cn-shanghai.aliyuncs.com/"
-        END_POINT = "https://oss-cn-hangzhou.aliyuncs.com"
+        #END_POINT = "https://oss-cn-hangzhou.aliyuncs.com"
+        END_POINT = "https://oss-cn-hangzhou-internal.aliyuncs.com"
         #BUCKET1 = "bxn-rby"
         BUCKET1 = "robot-rby"
         accessKeyId = "LTAI4G2eU6XFw22REmf583pA"
