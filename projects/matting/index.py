@@ -30,7 +30,7 @@ def _do(trace_id,oss_path,type,ifbg,bg_medio_path,out_format,ifoss,audio_path):
         if audio_path is not None:
             temp_audio_path = oss_base.download(audio_path)
 
-        result_path = M.do(trace_id,temp_path,type,ifbg,bg_medio_path,out_format,ifoss,temp_audio_path)
+        result_path = M.do(trace_id,temp_path,type,ifbg,temp_bg_medio_path,out_format,ifoss,temp_audio_path)
         logger.info(result_path)
     except Exception as e:
         err = traceback.format_exc()
